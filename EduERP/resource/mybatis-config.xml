@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties>
+		<property name="driver" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/smbms"></property>
+		<property name="user" value="root"></property>
+		<property name="pwd" value="123456"></property>
+	</properties>
+	<settings>
+		<setting name="logImpl" value="LOG4J"></setting> <!-- log日志的实现 -->
+	</settings>
+	<typeAliases> 
+		<package name="cn.pojo"></package>  <!-- 这个写法会比typeAlias 简单也可以简化，默认值是类名 -->
+	</typeAliases>
+	<mappers> <!-- 映射器 -->
+		<mapper resource="cn/pojo/.xml"/>
+	</mappers>
+</configuration>
