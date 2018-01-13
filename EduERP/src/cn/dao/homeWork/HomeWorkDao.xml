@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.HomeWorkDao">
+<resultMap type="HomeWork" id="HomeWorkList">
+		<result property="id" column="id"/>
+		<result property="billCode" column="billCode"/>
+		<result property="productName" column="productName"/>
+		<result property="totalPrice" column="totalPrice"/>
+		<result property="isPayment" column="isPayment"/>
+		<result property="providerId" column="providerId"/>
+		<result property="providerName" column="proName"/>
+		<result property="creationDate" column="creationDate"/>
+	</resultMap>
+</mapper>
