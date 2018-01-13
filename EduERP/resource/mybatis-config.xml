@@ -16,6 +16,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<package name="cn.pojo"></package>  <!-- 这个写法会比typeAlias 简单也可以简化，默认值是类名 -->
 	</typeAliases>
 	<mappers> <!-- 映射器 -->
-		<mapper resource="cn/pojo/.xml"/>
+		<mapper resource="cn/dao/Dictionary.xml"/>
 	</mappers>
 </configuration>

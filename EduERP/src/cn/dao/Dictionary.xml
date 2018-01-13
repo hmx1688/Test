@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.Dictionary">
+	<select id="count" resultType="int"> <!-- resultType是返回的类型因为是查找记录数所以返回int类型 -->
+		select count(1) as count from dictionary
+	</select>
+	<select id="findBy" resultType="user" parameterType="string">
+		select * from dictionary where dictName like CONCAT ('%',#{dictName},'%')
+	</select>
+</mapper>
