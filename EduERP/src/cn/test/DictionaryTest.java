@@ -19,7 +19,6 @@ public class DictionaryTest {
 			count = sqlSession.selectOne("cn.dao.providerMapper.count");
 			logger.debug("providerMapper Count----->" + count);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			MyBatisUtil.colseSql(sqlSession);
