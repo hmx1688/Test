@@ -1,11 +1,11 @@
 package cn.pojo;
 
-public class dictionary {
+public class Dictionary {
 	//参数表属性
 	private String dictCode;	//类型ID
 	private String diname;		//类型名称
-	private int parentid;		//类型父ID
-	private int sortIndex;		//排序
+	private String parentid;		//类型父ID
+	private String sortIndex;		//排序
 	private String remark;		//备注
 	public String getDictCode() {
 		return dictCode;
@@ -19,16 +19,17 @@ public class dictionary {
 	public void setDiname(String diname) {
 		this.diname = diname;
 	}
-	public int getParentid() {
+	
+	public String getParentid() {
 		return parentid;
 	}
-	public void setParentid(int parentid) {
+	public void setParentid(String parentid) {
 		this.parentid = parentid;
 	}
-	public int getSortIndex() {
+	public String getSortIndex() {
 		return sortIndex;
 	}
-	public void setSortIndex(int sortIndex) {
+	public void setSortIndex(String sortIndex) {
 		this.sortIndex = sortIndex;
 	}
 	public String getRemark() {
