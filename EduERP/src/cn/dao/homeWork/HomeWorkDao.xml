@@ -11,5 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="completion" column="completion"/>
 		<result property="userId" column="userId"/>
 	</resultMap>
-	
+	<!-- findBy -->
+	<select id="findBy" resultType="homeWork" parameterType="homeWork">
+		SELECT *  FROM userinfo WHERE userName=#{userName} and password=#{passWord}
+    </select>
 </mapper>
