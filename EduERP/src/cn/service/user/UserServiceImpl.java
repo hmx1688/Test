@@ -17,5 +17,4 @@ public class UserServiceImpl implements UserService {
 	public List<User> login(User user) {
 		return userMapper.findBy(user);
 	}
-
 }

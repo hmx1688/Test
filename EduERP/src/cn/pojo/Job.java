@@ -24,4 +24,10 @@ public class Job {
 	public void setJname(String jname) {
 		this.jname = jname;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 }
