@@ -11,6 +11,7 @@ public class User implements Serializable{
 	private String name;
 	private String sex;
 	private String state;
+	
 	public Integer getId() {
 		return id;
 	}

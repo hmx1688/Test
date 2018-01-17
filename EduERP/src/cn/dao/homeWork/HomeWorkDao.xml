@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.homeWork.HomeWorkDao">
+<resultMap type="HomeWork" id="HomeWorkList">
+		<result property="id" column="id"/>
+		<result property="chpId" column="chpId"/>
+		<result property="claId" column="claId"/>
+		<result property="type" column="type"/>
+		<result property="completion" column="completion"/>
+		<result property="userId" column="userId"/>
+	</resultMap>
+	<!-- findBy -->
+	<select id="findBy" resultType="homeWork" parameterType="homeWork">
+		SELECT *  FROM userinfo WHERE userName=#{userName} and password=#{passWord}
+    </select>
+</mapper>
