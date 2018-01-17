@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import cn.dao.Chapter.ChapterMapper;
+import cn.dao.chapter.ChapterMapper;
 import cn.pojo.Chapter;
 @Service
 public class ChapterServiceImpl implements ChapterService {

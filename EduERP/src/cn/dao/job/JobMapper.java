@@ -1,4 +1,4 @@
-package cn.dao.Job;
+package cn.dao.job;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package cn.dao.Chapter;
+package cn.dao.chapter;
 
 import java.util.List;
 
