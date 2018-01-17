@@ -4,7 +4,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>系统登录 - 超市订单管理系统</title>
+    <title>系统登录 - EDUERP系统</title>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/style.css" />
     <script type="text/javascript">
 	/* if(top.location!=self.location){
@@ -15,8 +15,7 @@
 <body class="login_bg">
     <section class="loginBox">
         <header class="loginHeader">
-            <h1>超市订单管理系统</h1>
-        </header>
+            <h1>教育ERP系统</h1>
         <section class="loginCont">
 	        <form class="loginForm" action="${pageContext.request.contextPath }/user/login"  name="actionForm" id="actionForm"  method="post" >
 				<div class="info">${error }</div>
