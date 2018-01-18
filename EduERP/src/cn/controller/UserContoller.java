@@ -21,7 +21,7 @@ public class UserContoller {
 		if(list!=null&&list.size()>0){
 			return "main";
 		}else{
-			return "/login.jsp";
+			return "redirect:login.jsp";
 		}
 	}
 }
