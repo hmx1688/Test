@@ -165,7 +165,7 @@ var validator = (function($){
         },
         // Date is validated in European format (day,month,year)
         date : function(a){
-            var day, A = a.split(/[-./]/g), i;
+            var day, A = a.split(/[-.]/g), i;
             // if there is native HTML5 support:
             if( field[0].valueAsNumber )
                 return true;
