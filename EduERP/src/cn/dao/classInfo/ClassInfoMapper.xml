@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.classInfo.ClassInfoMapper">
+	<resultMap type="ClassInfo" id="ClassInfoList">
+		<id property="id" column="id"/>
+		<result property="className" column="className"/>
+		<result property="faculty" column="faculty"/>
+		<result property="head" column="head"/>
+		<result property="classNumber" column="classNumber"/>
+	</resultMap>
+	<!-- 查询班级信息 -->
+	<select id="getClassInfoList" resultType="ClassInfo">
+		select * from ClassInfo where 1 = 1
+			<if test="id != null">
+				and id = #{id},
+			</if>
+			<if test="className != null">
+				and className = #{className},
+			</if>
+			<if test="faculty != null">
+				and faculty = #{faculty},
+			</if>
+			<if test="head != null">
+				and head = #{head},
+			</if>
+			<if test="classNumber != null">
+				and classNumber = #{classNubmer},
+			</if>
+	</select>
+	<!-- 添加班级信息 -->
+	<insert id="addcla"  parameterType="Integer">
+		insert into ClassInfo(id,className,faculty,head,classNumber)
+			values(#{id},#{className},#{faculty},#{head},#{classNumber})
+	</insert>
+	<!-- 修改班级信息 -->
+	<update id="updatecla" parameterType="Integer">
+		update classInfo
+		<set>
+			<if test="id != null">id=#{id}</if>
+			<if test="className != null">className=#{className}</if>
+			<if test="faculty != null">faculty=#{faculty}</if>
+			<if test="head != null">head=#{head}</if>
+			<if test="classNumber !=null">classNumber=#{classNumber}</if>
+		</set>
+		where id = #{id}
+	</update>
+	<!-- 删除章节 -->
+	<delete id="deletecla" parameterType="Integer">
+		delete form classInfo where id=#{id}
+	</delete>
+</mapper>
