@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import cn.pojo.ClassInfo;
-import cn.dao.classInfo.ClassInfoMapper;
+import cn.dao.classinfo.ClassInfoMapper;
 @Service
 public class ClassInfoServiceImpl implements ClassInfoService {
 	@Resource
