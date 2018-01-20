@@ -1,4 +1,4 @@
-package cn.servicetimetable;
+package cn.service.timetable;
 
 import java.util.List;
 
