@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.job.JobMapper">
+	<resultMap type="Job" id="job">
+		<id property="id" column="id"/>
+		<result property="jid" column="jid"/>
+		<result property="chaNumber" column="chaNumber"/>
+		<result property="jname" column="jname"/>
+	</resultMap>
+	<select id="findBy" resultType="Job">
+		select * from Job where 1 = 1
+			<if test="chaid != null">
+				and jid = #{jid},
+			</if>
+			<if test="chaName != null">
+				and jname = #{jname},
+			</if>
+			<if test="chaNumber != null">
+				and chaNumber = #{chaNubmer},
+			</if>
+	</select>
+</mapper>
