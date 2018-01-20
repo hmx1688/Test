@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.task.TaskMapper">
+	<!-- findBy -->
+	<select id="findBy" resultType="task" parameterType="task">
+		SELECT *  FROM task WHERE id=#{id} and
+								  title=#{title} and
+								  path=#{path} and
+								  sortIdex=#{sortIdex}
+    </select>
+</mapper>
