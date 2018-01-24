@@ -5,5 +5,5 @@ import java.util.List;
 import cn.pojo.Standard;
 
 public interface StandardService {
-     public List<Standard> findById(Standard standard);
+     public List<Standard> findAll();
 }
