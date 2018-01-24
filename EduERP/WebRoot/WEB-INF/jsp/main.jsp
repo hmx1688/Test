@@ -8,6 +8,7 @@
 			欢迎你：${userSession.userName }<strong> | 角色：${userSession.userTypeName }</strong>
 			</h3>
 		</h3>
+		<a href="${pageContext.request.contextPath }/homeWork/homeWork.html">作业情况</a>
 	</div>
 </div>
 <div class="clearfix"></div>        
