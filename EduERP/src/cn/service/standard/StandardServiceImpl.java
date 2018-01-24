@@ -19,11 +19,11 @@ public class StandardServiceImpl implements StandardService {
 	public void setStandardMapper(StandardMapper standardMapper) {
 		this.standardMapper = standardMapper;
 	}
-
-
 	@Override
-	public List<Standard> findById(Standard standard) {
-		return standardMapper.findBy(standard);
+	public List<Standard> findAll() {
+		return standardMapper.findAll();
 	}
+
+
 
 }
