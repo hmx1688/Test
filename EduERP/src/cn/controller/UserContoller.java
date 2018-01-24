@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.pojo.User;
-import cn.service.classinfo.ClassInfoService;
 import cn.service.user.UserService;
 @Controller()
 @RequestMapping(value="/user")
