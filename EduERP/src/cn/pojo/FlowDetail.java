@@ -59,11 +59,14 @@ public class FlowDetail {
 	/**
 	 * 有参构造函数
 	 */
-	public FlowDetail(Integer fldId,Integer fliId,String fldName,String dictCode,Integer userId){
-		this.fldId=fldId;
-		this.fliId=fliId;
-		this.fldName=fldName;
-		this.dictCode=dictCode;
-		this.userId=userId;
+
+	public FlowDetail(Integer fldId, Integer fliId, String fldName,
+			String dictCode, Integer userId) {
+		this.fldId = fldId;
+		this.fliId = fliId;
+		this.fldName = fldName;
+		this.dictCode = dictCode;
+		this.userId = userId;
 	}
+	
 }

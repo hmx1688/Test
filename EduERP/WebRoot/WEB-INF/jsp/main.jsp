@@ -10,6 +10,7 @@
 		</h3>
 		<a href="${pageContext.request.contextPath }/homeWork/homeWork.html">作业情况</a>
 		<a href="${pageContext.request.contextPath }/classInfo/classInfo.html">班级信息</a>
+		<a href="${pageContext.request.contextPath }/flowdatail/flowdatailList">流程环节表</a>
 	</div>
 </div>
 <div class="clearfix"></div>        
