@@ -1,11 +1,21 @@
 package cn.pojo;
-
+/**
+ * 章节表
+ * 尤瑞发
+ */
 public class Chapter {
 
-	public Integer id; //ID
-	public Integer chaId; //章节编码
-	public String chaName; //章节名称
-	public String chaNumber; //章节序号
+	private Integer id; //ID
+	private Integer chaId; //章节编码
+	private String chaName; //章节名称
+	private String chaNumber; //章节序号
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public Integer getChaId() {
 		return chaId;
 	}
@@ -23,11 +33,5 @@ public class Chapter {
 	}
 	public void setChaNumber(String chaNumber) {
 		this.chaNumber = chaNumber;
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
 	}
 }

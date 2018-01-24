@@ -1,11 +1,14 @@
 package cn.pojo;
-
+/**
+ * 作业表
+ * 尤瑞发
+ */
 public class Job {
 
-	public Integer id; //ID
-	public Integer jid; //作业类型
-	public String chaNumber;  //章节序号
-	public String jname; //作业名称
+	private Integer id; //ID
+	private Integer jid; //作业类型
+	private String chaNumber;  //章节序号
+	private String jname; //作业名称
 	public Integer getJid() {
 		return jid;
 	}

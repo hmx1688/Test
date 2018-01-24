@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.dao.chapter.ChapterMapper">
-<select id="findBy" resultType="Chapter">
+<select id="findBy" resultType="Chapter" parameterType="Chapter">
 		select * from Chapter where 1 = 1
 			<if test="chaid != null">
 				and chaId = #{chaId},
@@ -15,6 +15,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and chaNumber = #{chaNubmer},
 			</if>
 	</select>
+	<resultMap type="Chapter" id="ChpaterList">
+		<id property="id" column="id"/>
+		<result property="chaId" column="chaId"/>
+		<result property="chaName" column="chaName"/>
+		<result property="chaNumber" column="chaNumber"/>
+	</resultMap>
 	<!-- <resultMap type="Chapter" id="ChpaterList">
 		<id property="id" column="id"/>
 		<result property="chaId" column="chaId"/>

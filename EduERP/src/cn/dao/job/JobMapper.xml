@@ -11,10 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	<select id="findBy" resultType="Job">
 		select * from Job where 1 = 1
-			<if test="chaid != null">
+			<if test="jid != null">
 				and jid = #{jid},
 			</if>
-			<if test="chaName != null">
+			<if test="jname != null">
 				and jname = #{jname},
 			</if>
 			<if test="chaNumber != null">
