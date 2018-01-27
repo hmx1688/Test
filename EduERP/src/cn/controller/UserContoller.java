@@ -33,7 +33,7 @@ public class UserContoller {
 		if(list!=null&&list.size()>0){
 			List<User> userList=userService.findAll();
 			model.addAttribute("userList", userList);
-			return "userList";
+			return "main";
 		}else{
 			return "redirect:login.jsp";
 		}
