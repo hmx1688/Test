@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.pojo.User;
 import cn.service.user.UserService;
@@ -21,6 +22,12 @@ import cn.service.user.UserService;
 public class UserContoller {
 	@Resource
 	private UserService userService;
+	@RequestMapping("/page")
+	@ResponseBody
+	public List<User> page(Model model){
+		List<User> userList=userService.findAll();
+		return userList;
+	}
 	@RequestMapping("/list")
 	public String list(Model model){
 		List<User> userList=userService.findAll();

@@ -1,4 +1,4 @@
-package cn.util;
+package cn.pojo;
 
 public class PageSupport {
 	//当前页码-来自于用户输入
@@ -8,7 +8,7 @@ public class PageSupport {
 	private int totalCount = 0;
 	
 	//页面容量
-	private int pageSize = 0;
+	private int pageSize = 1;
 	
 	//总页数-totalCount/pageSize（+1）
 	private int totalPageCount = 1;
