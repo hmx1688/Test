@@ -8,11 +8,13 @@ public class PageSupport {
 	private int totalCount = 0;
 	
 	//页面容量
-	private int pageSize = 1;
+	private int pageSize = 2;
 	
 	//总页数-totalCount/pageSize（+1）
 	private int totalPageCount = 1;
-
+	
+	//起始行数
+	private int startRow;
 	public int getCurrentPageNo() {
 		return currentPageNo;
 	}
@@ -20,6 +22,8 @@ public class PageSupport {
 	public void setCurrentPageNo(int currentPageNo) {
 		if(currentPageNo > 0){
 			this.currentPageNo = currentPageNo;
+			int startr=(currentPageNo-1)*pageSize;
+			setStartRow(startr);
 		}
 	}
 
@@ -60,6 +64,14 @@ public class PageSupport {
 		}else{
 			this.totalPageCount = 0;
 		}
+	}
+
+	public int getStartRow() {
+		return startRow;
+	}
+
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
 	}
 	
 }

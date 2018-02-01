@@ -29,13 +29,38 @@
 <script type="text/javascript" src="statics/js/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		var curpage=1;
+		var totpages;
+		initData(curpage);
 		//首页
 		$("#firstPage").click(function(){
-			//$("tbody").load("/user/page",null);
-			$.getJSON("user/page",null,function(data){
+			curpage=1;
+			initData(curpage);
+		});
+		//末页
+		$("#lastPage").click(function(){
+			curpage=totpages;
+			initData(curpage);
+		});
+		//上一页
+		$("#prevPage").click(function(){
+			curpage=curpage-1;
+			initData(curpage);
+		});
+		//下一页
+		$("#nextPage").click(function(){
+			curpage=curpage+1;
+			initData(curpage);
+		});
+		function initData(curp){
+			$.getJSON("user/page","currentPageNo="+curp,function(data){
 				var str="<tr><td>登录名</td><td>姓名</td><td>密码</td><td>电话</td><td>操作</td></tr>";
 				var strTr="";
-				$.each(data,function(i,da){
+				curpage=data.page.currentPageNo;
+				totpages=data.page.totalPageCount;
+				$("#curp").html(curpage);
+				$("#totp").html(data.page.totalPageCount);
+				$.each(data.list,function(i,da){
 					strTr+="<tr>";
 					strTr+="<td>"+da.userName+"</td>";
 					strTr+="<td>"+da.name+"</td>";
@@ -48,12 +73,21 @@
 				str+=strTr;
 				$("tbody").html("");
 				$("tbody").html(str);
+				
+				if(curpage<=1){
+					$("#prevPage").hide();
+					//$("#nextPage").show();
+				}else{
+					$("#prevPage").show();
+				}
+				if(curpage>=totpages){
+					$("#nextPage").hide();
+					//$("#prevPage").show();
+				}else{
+					$("#nextPage").show();
+				}
 			});
-		});
-		//末页
-		//上一页
-		//下一页
-		
+		}
 	});
 </script>
 </head>
@@ -90,9 +124,10 @@
 			<tr>
 				<td colspan="4">
 				<a href="javascript:;" id="firstPage">首页</a> 
-				<a href="#" id="prevPage">上一页</a> 
-				<a href="#" id="nextPage">下一页</a> 
-				<a href="#" id="lastPage">末页</a>
+				<a href="javascript:;" id="prevPage">上一页</a> 
+				<a href="javascript:;" id="nextPage">下一页</a> 
+				<a href="javascript:;" id="lastPage">末页</a>
+				第<span id="curp"></span>页/共<span id="totp"></span>页
 				</td>
 			</tr>
 		</tfoot>

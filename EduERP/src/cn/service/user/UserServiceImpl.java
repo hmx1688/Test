@@ -1,6 +1,8 @@
 package cn.service.user;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import cn.dao.user.UserMapper;
 import cn.pojo.HomeWork;
+import cn.pojo.PageSupport;
 import cn.pojo.User;
 /**
  * 
@@ -43,7 +46,19 @@ public class UserServiceImpl implements UserService {
 		return userMapper.delete(user);
 	}
 	@Override
-	public List<User> findList(User user) {
-		return userMapper.findBy(user);
+	public Map<String, Object> findList(User user,PageSupport ps) {
+		List<User> list=userMapper.findBy(user);
+		Map<String, Object> map=new HashMap<String, Object>();
+		if(ps==null){
+			ps=new PageSupport();
+		}
+		ps.setPageSize(2);
+		ps.setTotalCount(list.size());
+		user.setStartRow(ps.getStartRow());
+		user.setPageSize(ps.getPageSize());
+		List<User> ulist=userMapper.findPage(user);
+		map.put("page", ps);
+		map.put("list", ulist);
+		return map;
 	}
 }
