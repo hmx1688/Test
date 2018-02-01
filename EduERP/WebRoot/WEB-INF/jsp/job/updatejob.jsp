@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'Job.jsp' starting page</title>
+    <title>My JSP 'updatejob.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,10 +23,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <div>
-    	<input name="jid" type="text" value="${jid}">作业类型
-    	<input name="chaNumber" type="text" value="${chaNumber}">章节序号
-    	<input name="jname" type="text" value="${jname}">作业名称
-    </div>
+    <form action="${basePath}job/update" method="post">
+    <table>
+    	<tr>
+    		<td>修改用户<input type="hidden" name="id" value="${list.id}"></td>
+    	</tr>
+    	<tr>
+    		<td>章节编码：</td>
+    		<td><input type="text" name="jid" value="${list.jid}"></td>
+    	</tr>
+    	<tr>
+    		<td>章节名称：</td>
+    		<td><input type="text" name="jname" value="${list.jname}"></td>
+    	</tr>
+    	<tr>
+    		<td>章节序号：</td>
+    		<td><input type="text" name="chaNumber" value="${list.chaNumber}"></td>
+    	</tr>
+    	<tr>
+    		<td><input type="submit" value="保存"></td>
+    	</tr>
+    	</table>
+    </form>
   </body>
 </html>

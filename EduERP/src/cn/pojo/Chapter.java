@@ -6,7 +6,7 @@ package cn.pojo;
 public class Chapter {
 
 	private Integer id; //ID
-	private Integer chaId; //章节编码
+	private String chaId; //章节编码
 	private String chaName; //章节名称
 	private String chaNumber; //章节序号
 	
@@ -16,10 +16,10 @@ public class Chapter {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getChaId() {
+	public String getChaId() {
 		return chaId;
 	}
-	public void setChaId(Integer chaId) {
+	public void setChaId(String chaId) {
 		this.chaId = chaId;
 	}
 	public String getChaName() {
