@@ -1,14 +1,21 @@
 package cn.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.pojo.PageSupport;
 import cn.pojo.User;
 import cn.service.user.UserService;
 /**
@@ -21,6 +28,13 @@ import cn.service.user.UserService;
 public class UserContoller {
 	@Resource
 	private UserService userService;
+	@RequestMapping(value="/page",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> page(PageSupport ps){
+		User user=new User();
+		Map<String, Object> map=userService.findList(user,ps);//new HashMap<String, Object>();
+		return map;
+	}
 	@RequestMapping("/list")
 	public String list(Model model){
 		List<User> userList=userService.findAll();
@@ -60,7 +74,8 @@ public class UserContoller {
 	}
 	@RequestMapping("/preUpdate")
 	public String preUpdate(User user,Model model){
-		List<User> list=userService.findList(user);
+		@SuppressWarnings("unchecked")
+		List<User> list=(List<User>)userService.findList(user,null).get("list");
 		if(list!=null&&list.size()>0){
 			model.addAttribute("user", list.get(0));
 			return "/user/updateUser";

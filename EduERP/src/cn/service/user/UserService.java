@@ -1,7 +1,9 @@
 package cn.service.user;
 
 import java.util.List;
+import java.util.Map;
 
+import cn.pojo.PageSupport;
 import cn.pojo.User;
 /**
  * 
@@ -12,7 +14,7 @@ import cn.pojo.User;
 public interface UserService {
 	public List<User> login(User user);
 	public List<User> findAll();
-	public List<User> findList(User user);
+	public Map<String, Object> findList(User user,PageSupport ps);
 	public int insert(User user);
 	public int update(User user);
 	public int delete(User user);
