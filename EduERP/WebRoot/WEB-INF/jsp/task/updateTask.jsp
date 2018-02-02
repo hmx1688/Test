@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>添加用户</title>
+<title>修改用户</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -25,42 +25,35 @@
 </head>
 
 <body>
-	<form action="user/doAddUser" method="post">
-		<table>
+<center>
+	<form action="${basePath}task/update" method="post">
+		 <table border="1px">
+	    	<tr>
+	    		<td align="center" colspan="2">修改任务信息
+	    		<input type="hidden" name="id" value="${task.id}"></td>
+	    	</tr>
+	    	<tr>
+	    		<td>标题:</td>
+	    		<td>
+	    			<input type="text" name="title" value="${task.title}">
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<td>路径:</td>
+	    		<td>
+	    			<input type="text" name="path" value="${task.path}"></td>
+	    	</tr>
 			<tr>
-				<td>添加用户</td>
-			</tr>
+	    		<td>优先级:</td>
+	    		<td>
+	    			<input type="text" name="sortIdex" value="${task.sortIdex}">
+	    		</td>
+	    	</tr>
 			<tr>
-				<td>登录名:</td>
-				<td><input type="text" name="userName">
-				</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>密码:</td>
-				<td><input type="password" name="passWord">
-				</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>姓名:</td>
-				<td><input type="text" name="name">
-				</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>电话:</td>
-				<td><input type="text" name="phone">
-				</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="登录">
-				</td>
-				<td></td>
-				<td></td>
+				<td align="center" colspan="2"><input type="submit" value="提交"></td>
 			</tr>
 		</table>
 	</form>
+</center>
 </body>
 </html>

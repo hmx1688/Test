@@ -31,6 +31,7 @@
 					
                     <input type="submit" value="登录"/>
                     <input type="reset" value="重置"/>
+                    <a href="user/register">注册</a>
                 </div>	
 			</form>
         </section>

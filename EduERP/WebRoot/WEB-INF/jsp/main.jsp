@@ -12,7 +12,9 @@
 		<a href="${pageContext.request.contextPath }/classInfo/classInfo.html">班级信息</a>
 		<a href="${pageContext.request.contextPath }/flowdatail/flowdatailList">流程环节表</a>
 		<a href="${pageContext.request.contextPath }/standard/standardlist">标准课程信息</a>
+		<a href="${pageContext.request.contextPath }/task/tasklist">任务信息</a>
 		<a href="${pageContext.request.contextPath }/chapter/Chapter">章节信息</a>
+		<a href="${pageContext.request.contextPath }/user/userList">注册</a>
 	</div>
 </div>
 <div class="clearfix"></div>        

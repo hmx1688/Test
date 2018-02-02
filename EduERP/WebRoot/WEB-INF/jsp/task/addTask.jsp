@@ -25,42 +25,31 @@
 </head>
 
 <body>
-	<form action="user/doAddUser" method="post">
-		<table>
+<center>
+	<form action="task/doAddTask" method="post">
+			<table border="1px">
 			<tr>
-				<td>添加用户</td>
+				<td align="center" colspan="2">添加任务信息</td>
 			</tr>
 			<tr>
-				<td>登录名:</td>
-				<td><input type="text" name="userName">
-				</td>
-				<td></td>
+				<td>标题:</td>
+				<td><input type="text" name="title"></td>
 			</tr>
 			<tr>
-				<td>密码:</td>
-				<td><input type="password" name="passWord">
-				</td>
-				<td></td>
+				<td>路径:</td>
+				<td><input type="text" name="path"></td>
 			</tr>
 			<tr>
-				<td>姓名:</td>
-				<td><input type="text" name="name">
-				</td>
-				<td></td>
+				<td>优先级:</td>
+				<td><input type="text" name="sortIdex"></td>
 			</tr>
 			<tr>
-				<td>电话:</td>
-				<td><input type="text" name="phone">
-				</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="登录">
-				</td>
-				<td></td>
-				<td></td>
+				<td align="center" colspan="2">
+				<input type="submit" value="提交"></td>
 			</tr>
 		</table>
+		
 	</form>
+</center>
 </body>
 </html>
