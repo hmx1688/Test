@@ -26,7 +26,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <table border="1">
           <tr>
-              <td>班级编号</td>
               <td>班级名称</td>
               <td>教员</td>
               <td>班主任</td>
@@ -35,9 +34,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </tr>
           <c:forEach var="classInfolist" items="${List}" varStatus="status">
 				<tr>
-					<td>
-					<span>${classInfolist.id}</span>
-					</td>
 					<td>
 					<span>${classInfolist.className}</span>
 					</td>
@@ -51,12 +47,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span>${classInfolist.classNumber}</span>
 					</td>
 					<td>
-					<a href="#">新增</a>
-                    <a href="#">修改</a>
-                    <a href="#">删除</a>
+					<a href="classInfo/preAddClassInfo">新增</a>
+                    <a href="classInfo/preUpdateClassInfo?id=${classInfolist.id}">修改</a>
+                    <a href="classInfo/deleteclassinfo?id=${classInfolist.id}">删除</a>
                     </td>
 				</tr>
 			</c:forEach>
+			<tr>
+			   <td>
+    			<a href="#">首页</a>
+    			</td>
+    			<td>
+    			<a href="#">上一页</a></td>
+    			<td>
+    			<a href="#">下一页</a></td>
+    			<td>
+    			<a href="#">末页</a></td>
+    			</td>
+    	</tr>
       </table>
   </body>
 </html>
+

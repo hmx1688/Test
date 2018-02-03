@@ -1,6 +1,6 @@
 package cn.dao.classinfo;
 /*
- * 刘森奇
+ * 刘森奇2018.2.3
  */
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
