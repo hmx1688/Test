@@ -25,69 +25,21 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
 <script type="text/javascript" src="statics/js/jquery.min.js"></script>
+<script type="text/javascript" src="statics/js/pages.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var curpage=1;
-		var totpages;
-		initData(curpage);
-		//首页
-		$("#firstPage").click(function(){
-			curpage=1;
-			initData(curpage);
-		});
-		//末页
-		$("#lastPage").click(function(){
-			curpage=totpages;
-			initData(curpage);
-		});
-		//上一页
-		$("#prevPage").click(function(){
-			curpage=curpage-1;
-			initData(curpage);
-		});
-		//下一页
-		$("#nextPage").click(function(){
-			curpage=curpage+1;
-			initData(curpage);
-		});
-		function initData(curp){
-			$.getJSON("user/page","currentPageNo="+curp,function(data){
-				var str="<tr><td>登录名</td><td>姓名</td><td>密码</td><td>电话</td><td>操作</td></tr>";
-				var strTr="";
-				curpage=data.page.currentPageNo;
-				totpages=data.page.totalPageCount;
-				$("#curp").html(curpage);
-				$("#totp").html(data.page.totalPageCount);
-				$.each(data.list,function(i,da){
-					strTr+="<tr>";
-					strTr+="<td>"+da.userName+"</td>";
-					strTr+="<td>"+da.name+"</td>";
-					strTr+="<td>"+da.passWord+"</td>";
-					strTr+="<td>"+da.phone+"</td>";
-					strTr+="<td><a href=\"user/preUpdate?id="+da.id+"\">修改</a><a href=\"user/delete?id="+da.id+"\">删除</a>";
-					strTr+="</td>";
-					strTr+="</tr>";
-				});
-				str+=strTr;
-				$("tbody").html("");
-				$("tbody").html(str);
-				
-				if(curpage<=1){
-					$("#prevPage").hide();
-					//$("#nextPage").show();
-				}else{
-					$("#prevPage").show();
-				}
-				if(curpage>=totpages){
-					$("#nextPage").hide();
-					//$("#prevPage").show();
-				}else{
-					$("#nextPage").show();
-				}
-			});
-		}
+		var headRow="<tr><td>登录名</td><td>姓名</td><td>密码</td><td>电话</td><td>操作</td></tr>";
+		/* var circleRow="<tr>";
+		circleRow+="<td>"+da.userName+"</td>";
+		circleRow+="<td>"+da.name+"</td>";
+		circleRow+="<td>"+da.passWord+"</td>";
+		circleRow+="<td>"+da.phone+"</td>";
+		circleRow+="<td><a href=\"user/preUpdate?id="+da.id+"\">修改</a><a href=\"user/delete?id="+da.id+"\">删除</a>";
+		circleRow+="</td>";
+		circleRow+="</tr>"; */
+		var cols=new Array("da.userName", "da.phone");
+		pages("user/page?currentPageNo=",headRow,null,cols);
 	});
 </script>
 </head>
