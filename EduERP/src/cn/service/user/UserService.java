@@ -18,4 +18,6 @@ public interface UserService {
 	public int insert(User user);
 	public int update(User user);
 	public int delete(User user);
+	public List<User> findBy(User user);
+	public List<User> findPage(User user);
 }

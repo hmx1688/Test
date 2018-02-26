@@ -1,6 +1,6 @@
 function pages(url,headRow,circleRow,cols){
-		var curpage=1;
-		var totpages;
+		var curpage=1;//当前页码
+		var totpages;//总页数
 		initData(url+curpage,headRow,circleRow,curpage,cols);
 		//首页
 		$("#firstPage").click(function(){

@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     <!-- findPage 创建：hmx20180125 -->
 	<select id="findPage" resultType="user">
-		SELECT *  FROM userinfo <!-- WHERE userName=#{userName} and password=#{passWord} -->
+		SELECT *  FROM userinfo
 		<where>
 			<if test="id!=null and id!=0">
 				and id=#{id} 

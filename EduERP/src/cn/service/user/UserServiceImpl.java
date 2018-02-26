@@ -61,4 +61,12 @@ public class UserServiceImpl implements UserService {
 		map.put("list", ulist);
 		return map;
 	}
+	public List<User> findPage(User user) {
+		List<User> ulist=userMapper.findPage(user);
+		return ulist;
+	}
+	@Override
+	public List<User> findBy(User user) {
+		return userMapper.findBy(user);
+	}
 }

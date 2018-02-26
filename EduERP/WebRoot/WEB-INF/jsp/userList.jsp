@@ -1,88 +1,230 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<!-- 
-	创建 hmx20180125 15:33
-	修改 
-	-->
-<head>
-<base href="<%=basePath%>">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="common/header.jsp"%>
+<div class="clearfix"></div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					用户列表 <i class="fa fa-user"></i><small>${userSession.userName}
+						- 您可以通过搜索或者其他的筛选项对所有用户的信息进行审核操作。^_^</small>
+				</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<form method="post" action="list">
+					<input type="hidden" name="pageIndex" value="1" />
+			    <ul>
+					<li>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">软件名称</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+							</div>
+						</div>
+					</li>
+					
+					<li>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">所属平台</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<select name="queryFlatformId" class="form-control">
+									<c:if test="${flatFormList != null }">
+									   <option value="">--请选择--</option>
+									   <c:forEach var="dataDictionary" items="${flatFormList}">
+									   		<option <c:if test="${dataDictionary.valueId == queryFlatformId }">selected="selected"</c:if>
+									   		value="${dataDictionary.valueId}">${dataDictionary.valueName}</option>
+									   </c:forEach>
+									</c:if>
+        						</select>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">一级分类</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<select id="queryCategoryLevel1" name="queryCategoryLevel1" class="form-control">
+									<c:if test="${categoryLevel1List != null }">
+									   <option value="">--请选择--</option>
+									   <c:forEach var="appCategory" items="${categoryLevel1List}">
+									   		<option <c:if test="${appCategory.id == queryCategoryLevel1 }">selected="selected"</c:if>
+									   		value="${appCategory.id}">${appCategory.categoryName}</option>
+									   </c:forEach>
+									</c:if>
+        						</select>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">二级分类</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="hidden" name="categorylevel2list" id="categorylevel2list"/>
+        						<select name="queryCategoryLevel2" id="queryCategoryLevel2" class="form-control">
+        							<c:if test="${categoryLevel2List != null }">
+									   <option value="">--请选择--</option>
+									   <c:forEach var="appCategory" items="${categoryLevel2List}">
+									   		<option <c:if test="${appCategory.id == queryCategoryLevel2 }">selected="selected"</c:if>
+									   		value="${appCategory.id}">${appCategory.categoryName}</option>
+									   </c:forEach>
+									</c:if>
+        						</select>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">三级分类</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+        						<select name="queryCategoryLevel3" id="queryCategoryLevel3" class="form-control">
+        							<c:if test="${categoryLevel3List != null }">
+									   <option value="">--请选择--</option>
+									   <c:forEach var="appCategory" items="${categoryLevel3List}">
+									   		<option <c:if test="${appCategory.id == queryCategoryLevel3 }">selected="selected"</c:if>
+									   		value="${appCategory.id}">${appCategory.categoryName}</option>
+									   </c:forEach>
+									</c:if>
+        						</select>
+							</div>
+						</div>
+					</li>
+					<li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button></li>
+				</ul>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="col-md-12 col-sm-12 col-xs-12">
+	<div class="x_panel">
+		<div class="x_content">
+			<p class="text-muted font-13 m-b-30"></p>
+			<div id="datatable-responsive_wrapper"
+				class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+				<div class="row">
+					<div class="col-sm-12">
+						<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+							cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
+							<thead>
+								<tr role="row">
+									<th class="sorting_asc" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										style="width: 70px;" aria-label="First name: activate to sort column descending"
+										aria-sort="ascending">登录名</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										style="width: 10px;"
+										aria-label="Last name: activate to sort column ascending">
+										姓名</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										style="width: 90px;"
+										aria-label="Last name: activate to sort column ascending">
+										密码</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										style="width: 50px;"
+										aria-label="Last name: activate to sort column ascending">
+										电话</th>
+									<!-- <th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										style="width: 170px;"
+										aria-label="Last name: activate to sort column ascending">
+										所属分类(一级分类、二级分类、三级分类)</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										style="width: 30px;"
+										aria-label="Last name: activate to sort column ascending">
+										状态</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										style="width: 30px;"
+										aria-label="Last name: activate to sort column ascending">
+										下载次数</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										style="width: 64px;"
+										aria-label="Last name: activate to sort column ascending">
+										最新版本号</th> -->
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										style="width: 30px;"
+										aria-label="Last name: activate to sort column ascending">
+										操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="appInfo" items="${appInfoList }" varStatus="status">
+									<tr role="row" class="odd">
+										<td tabindex="0" class="sorting_1">${appInfo.userName}</td>
+										<td>${appInfo.name}</td>
+										<td>${appInfo.passWord}</td>
+										<td>${appInfo.phone}</td>
+										<%-- <td>${appInfo.userName}</td>
+										<td tabindex="0" class="sorting_1">${appInfo.softwareName}</td>
+										<td>${appInfo.APKName }</td>
+										<td>${appInfo.softwareSize }</td>
+										<td>${appInfo.flatformName }</td>
+										<td>${appInfo.categoryLevel1Name } -> ${appInfo.categoryLevel2Name } -> ${appInfo.categoryLevel3Name }</td>
+										<td>${appInfo.statusName }</td>
+										<td>${appInfo.downloads }</td>
+										<td>${appInfo.versionNo }</td> --%>
+										<td>
+										<button type="button" class="btn btn-default checkApp" 
+											<%-- appinfoid="${appInfo.id }" versionid="${appInfo.versionId }" status="${appInfo.status }" 
+											statusname="${appInfo.statusName }"	 --%>										
+											data-toggle="tooltip" data-placement="top" title="" data-original-title="查看并审核APP">审核</button>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5">
+						<div class="dataTables_info" id="datatable-responsive_info"
+							role="status" aria-live="polite">共${pages.totalCount }条记录
+							${pages.currentPageNo }/${pages.totalPageCount }页</div>
+					</div>
+					<div class="col-sm-7">
+						<div class="dataTables_paginate paging_simple_numbers"
+							id="datatable-responsive_paginate">
+							<ul class="pagination">
+								<c:if test="${pages.currentPageNo > 1}">
+									<li class="paginate_button previous"><a
+										href="javascript:page_nav(document.forms[0],1);"
+										aria-controls="datatable-responsive" data-dt-idx="0"
+										tabindex="0">首页</a>
+									</li>
+									<li class="paginate_button "><a
+										href="javascript:page_nav(document.forms[0],${pages.currentPageNo-1});"
+										aria-controls="datatable-responsive" data-dt-idx="1"
+										tabindex="0">上一页</a>
+									</li>
+								</c:if>
+								<c:if test="${pages.currentPageNo < pages.totalPageCount }">
+									<li class="paginate_button "><a
+										href="javascript:page_nav(document.forms[0],${pages.currentPageNo+1 });"
+										aria-controls="datatable-responsive" data-dt-idx="1"
+										tabindex="0">下一页</a>
+									</li>
+									<li class="paginate_button next"><a
+										href="javascript:page_nav(document.forms[0],${pages.totalPageCount });"
+										aria-controls="datatable-responsive" data-dt-idx="7"
+										tabindex="0">最后一页</a>
+									</li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
 
-<title>用户列表</title>
-
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-<script type="text/javascript" src="statics/js/jquery.min.js"></script>
-<script type="text/javascript" src="statics/js/pages.js"></script>
-<script type="text/javascript">
-	$(function(){
-		var headRow="<tr><td>登录名</td><td>姓名</td><td>密码</td><td>电话</td><td>操作</td></tr>";
-		/* var circleRow="<tr>";
-		circleRow+="<td>"+da.userName+"</td>";
-		circleRow+="<td>"+da.name+"</td>";
-		circleRow+="<td>"+da.passWord+"</td>";
-		circleRow+="<td>"+da.phone+"</td>";
-		circleRow+="<td><a href=\"user/preUpdate?id="+da.id+"\">修改</a><a href=\"user/delete?id="+da.id+"\">删除</a>";
-		circleRow+="</td>";
-		circleRow+="</tr>"; */
-		var cols=new Array("da.userName", "da.phone");
-		pages("user/page?currentPageNo=",headRow,null,cols);
-	});
-</script>
-</head>
-
-<body>
-	<a href="user/addUser">添加</a>
-	<table border="1px">
-		<thead>
-			<tr>
-				<th colspan="5">用户信息</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%-- <tr>
-				<td>登录名</td>
-				<td>姓名</td>
-				<td>密码</td>
-				<td>电话</td>
-				<td>操作</td>
-			</tr>
-			<c:forEach items="${userList}" var="user">
-				<tr>
-					<td>${user.userName}</td>
-					<td>${user.name}</td>
-					<td>${user.passWord}</td>
-					<td>${user.phone}</td>
-					<td><a href="user/preUpdate?id=${user.id}">修改</a> <a
-						href="user/delete?id=${user.id}">删除</a>
-					</td>
-				</tr>
-			</c:forEach> --%>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="4">
-				<a href="javascript:;" id="firstPage">首页</a> 
-				<a href="javascript:;" id="prevPage">上一页</a> 
-				<a href="javascript:;" id="nextPage">下一页</a> 
-				<a href="javascript:;" id="lastPage">末页</a>
-				第<span id="curp"></span>页/共<span id="totp"></span>页
-				</td>
-			</tr>
-		</tfoot>
-	</table>
-</body>
-</html>
+		</div>
+	</div>
+</div>
+</div>
+<%@include file="common/footer.jsp"%>
+<script src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
+<script src="${pageContext.request.contextPath }/statics/localjs/applist.js"></script>

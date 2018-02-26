@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
@@ -29,27 +30,50 @@ public class UserContoller {
 	@Resource
 	private UserService userService;
 	@RequestMapping(value="/page",method=RequestMethod.GET)
-	@ResponseBody
-	public Map<String, Object> page(PageSupport ps){
+	//@ResponseBody
+	public String page(Model model,HttpSession session,PageSupport ps){
 		User user=new User();
-		Map<String, Object> map=userService.findList(user,ps);//new HashMap<String, Object>();
-		return map;
+		List<User> list=userService.findBy(user);
+		if(ps==null){
+			ps=new PageSupport();
+		}
+		ps.setPageSize(2);
+		ps.setTotalCount(list.size());
+		user.setStartRow(ps.getStartRow());
+		user.setPageSize(ps.getPageSize());
+		list=userService.findPage(user);
+		//Map<String, Object> map=userService.findList(user,ps);//new HashMap<String, Object>();
+//		Map<String, Object> map=new HashMap<String, Object>();
+//		map.put("page", ps);
+//		map.put("list", list);
+		model.addAttribute("pages", ps);
+		model.addAttribute("appInfoList", list);
+		return "userList";
 	}
 	@RequestMapping("/list")
 	public String list(Model model){
-		List<User> userList=userService.findAll();
-		model.addAttribute("userList", userList);
+		List<User> userList=userService.findBy(new User());
+		PageSupport ps=new PageSupport();
+		ps.setPageSize(2);
+		ps.setTotalCount(userList.size());
+//		user.setStartRow(ps.getStartRow());
+//		user.setPageSize(ps.getPageSize());
+//		list=userService.findPage(user);
+		
+		model.addAttribute("pages", ps);
+		model.addAttribute("appInfoList", userList);
 		return "userList";
 	}
 	@RequestMapping("/login")
-	public String login(@Param("user")User user,Model model){
+	public String login(@Param("user")User user,Model model,HttpSession session){
 		List<User> list=userService.login(user);
 		if(list!=null&&list.size()>0){
 			List<User> userList=userService.findAll();
 			model.addAttribute("userList", userList);
+			session.setAttribute("userSession", userList.get(0));
 			return "main";
 		}else{
-			return "redirect:login.jsp";
+			return "redirect:/login.jsp";
 		}
 	}
 	@RequestMapping("/addUser")

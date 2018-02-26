@@ -38,9 +38,7 @@
             <div class="navbar nav_title" style="border: 0;">
               <a href="${pageContext.request.contextPath }/manager/backend/main" class="site_title"><i class="fa fa-paw"></i> <span>APP BMS</span></a>
             </div>
-
             <div class="clearfix"></div>
-
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
@@ -48,17 +46,15 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>${userSession.userCode }</h2>
+                <h2>${userSession.name }</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
-
             <br />
-
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>${userSession.userName }</h3>
+               <%--  <h3>${userSession.userName }</h3> --%>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> APP管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -68,7 +64,7 @@
                   </li>
                   <li><a><i class="fa fa-edit"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="javascript:;">后台用户管理</a></li>
+                      <li><a href="${pageContext.request.contextPath }/user/list">用户管理</a></li>
                       <li><a href="javascript:;">开发者资质审核</a></li>
                     </ul>
                   </li>
@@ -115,7 +111,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="${pageContext.request.contextPath }/statics/images/img.jpg" alt="">${userSession.userCode }
+                    <img src="${pageContext.request.contextPath }/statics/images/img.jpg" alt="">${userSession.name }
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
